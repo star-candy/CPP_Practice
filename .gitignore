@@ -10,23 +10,6 @@
 *.userosscache
 *.sln.docstates
 
-## forders
-Debug/
-Release/
-x64/
-.vs/
-**/Debug/
-**/Release/
-**/x64/
-
-## files
-*.sln
-**/*.vcxproj
-**/*.vcxproj.*
-**/*.i
-**/*.obj
-
-
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 

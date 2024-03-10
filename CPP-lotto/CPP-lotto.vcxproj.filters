@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="소스 파일\controller">
+      <UniqueIdentifier>{d21f14de-ca35-4ff2-934b-9e6f922b5d86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\model">
+      <UniqueIdentifier>{5e9c3e08-8997-423d-8811-c044542af4de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\view">
+      <UniqueIdentifier>{4a3f9f93-7621-4e8a-b6ad-f478d506a64f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\docs">
+      <UniqueIdentifier>{be5e2399-ed74-49f2-9a62-30825db54c94}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="CPP-lotto.cpp">
+      <Filter>소스 파일\controller</Filter>
+    </ClCompile>
+    <ClCompile Include="OutputView.cpp">
+      <Filter>소스 파일\view</Filter>
+    </ClCompile>
+    <ClCompile Include="InputView.cpp">
+      <Filter>소스 파일\view</Filter>
+    </ClCompile>
+    <ClCompile Include="Controller.h">
+      <Filter>헤더 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="Validation.cpp">
+      <Filter>소스 파일\model</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>소스 파일\model</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="DOCUMENT.md">
+      <Filter>소스 파일\docs</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="View.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Common.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
