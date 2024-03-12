@@ -12,7 +12,6 @@ public:
 class Output {
 
 public:
-    void printPurchasedLotto(vector<vector<int>> purchasedLotto);
-    void printWinningStatics(vector<int> winningStatics);
-    void printProfitRate(int profitRate);
+    void printPurchasedLotto(vector<vector<int>>& purchasedLotto);
+    void printWinningStatics(vector<int>& winningStatics, double profitRate);
 };
