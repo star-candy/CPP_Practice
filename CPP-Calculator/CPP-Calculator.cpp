@@ -109,8 +109,16 @@ double primary();     // read and evaluate a Primary
 
 int main()
 try {
-    while (cin)
-        cout << expression() << '\n';
+    double val = 0;
+    while (cin) {
+        Token t = ts.get();
+
+        while (t.kind == ';') t = ts.get();
+        if (t.kind == 'q') break;
+        ts.putback(t);
+        cout << "= " << expression() << "\n";
+
+    }
     keep_window_open("~0");
 }
 catch (exception& e) {
