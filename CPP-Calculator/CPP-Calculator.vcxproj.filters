@@ -15,18 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="ch01.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="testError.cpp">
+    <ClCompile Include="CPP-Calculator.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="std_lib_facilities.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="test.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

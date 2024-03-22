@@ -21,8 +21,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{4dd87326-9efd-402d-ac09-d567eec20c6b}</ProjectGuid>
-    <RootNamespace>ch01</RootNamespace>
+    <ProjectGuid>{091f6204-62d4-4b4a-9795-ae9d93e5eba5}</ProjectGuid>
+    <RootNamespace>CPPCalculator</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -127,12 +127,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="ch01.cpp" />
-    <ClCompile Include="testError.cpp" />
+    <ClCompile Include="CPP-Calculator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="std_lib_facilities.h" />
-    <ClInclude Include="test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
