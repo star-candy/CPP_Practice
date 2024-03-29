@@ -1,10 +1,52 @@
 #include "std_lib_facilities.h"
 
 
+
+class Model
+{
+public:
+
+    Model(int stick, int disk) {
+        this->stick = stick;
+        this->disk = disk;
+        createHanoiTower();
+    }
+
+    void createHanoiTower() {
+        vector<int> initTower;
+        vector<int> empty;
+
+        for (int i = disk; i > 0; i--) {
+            initTower.push_back(i);
+        }
+        hanoiTower.push_back(initTower);
+
+        for (int j = 0; j < stick; j++) {
+            hanoiTower.push_back(empty);
+        }
+    }
+
+    void verification(int existPosition, int changePosition) {
+       
+
+
+    }
+
+    int getGameEndCount() { return gameEndCount; }
+
+private:
+    vector<vector<int>> hanoiTower;
+    int stick;
+    int disk;
+    int gameEndCount = 1;
+};
+
+
+
 class View {
 public:
     void inputInitialize();
-    void inputMoveDisk();
+    void inputMoveDisk(Model& model);
     bool inputReset();
     void outputDiskVisual();
 
@@ -15,13 +57,15 @@ private:
     int stick = 0;
     int disk = 0;
     int moveCount = 1;
+    int existPosition = 0;
+    int changePosition = 0;
 };
 
 void View::inputInitialize() {
     try {
         cout << "막대와 디스크의 개수를 입력해주세요" << "\n";
         cin >> stick >> disk;
-        if (stick < 3 || sizeof(stick) != 4 || disk < 1 || sizeof(disk) != 4) {
+        if (stick < 3  || disk < 1 ) { //stick disk에 int가 아닌 값 입력 경우도 고려할 것
             error("Input failed!");
         }
     }
@@ -30,20 +74,24 @@ void View::inputInitialize() {
         inputInitialize();
     }
 }
-
-void View::inputMoveDisk() {
+void View::inputMoveDisk(Model& model) {
     try {
         cout << "[" << moveCount << "]";
         cout << "From which tower will you move a disk to which tower ? (from = [1 | 2 | 3], to = [1 | 2 | 3]) :" << "\n";
-        //model생성자에 input 입력해 초기화
+        cin >> existPosition >> changePosition;
+        if (existPosition > stick || changePosition > stick ) {//position에 int가 아닌 값 입력 경우도 고려할 것
+            error("Input is out of stick range");
+        }
+
+        model.verification(existPosition, changePosition);
+
         moveCount++;
     }
     catch (runtime_error& e) {
         cout << e.what() << "\n";
-        inputMoveDisk();
+        inputMoveDisk(model);
     }
 }
-
 bool View::inputReset() {
     char restartCount;
     cout << "Congratulation! You solved it in " << moveCount << "moves!" << "\n";
@@ -62,15 +110,9 @@ bool View::inputReset() {
         return false;
     }
 }
-
 void View::outputDiskVisual() {
 
 }
-
-
-
-
-
 
 
 
@@ -82,8 +124,13 @@ try {
     cout << "하노이의 탑 게임을 시작합니다" << "\n";
     do {
         View view; // View class 객체 생성
+        view.inputInitialize();
+        Model model(view.getStick(), view.getDisk()); //Model class 객체 생성 및 하노이 탑 초기화
 
+        while (model.getGameEndCount()) {//1로 초기화 / 게임 완료 시 0 return
+            view.inputMoveDisk(model); //model 객체 참조
 
+        }
 
 
         restartCount = view.inputReset();

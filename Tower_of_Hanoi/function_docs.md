@@ -15,24 +15,21 @@
 
 ### model class
 
-- 막대와 디스크 저장된 이차원 벡터 변수
+- vector creator functions
+  + [0] stick, disk 개수에 맞게 vector 생성 및 초기화
+ 
+### inputVerification function
+ 사용자의 입력이 현재 벡터에 유효한지 판단한다. (입력받은 위치정보 활용)
+  + [] 
+  + [] 
+  + [] 
 
-- 생성자를 통해 한번에 판단할 것
-- inputVerification functions
-  + [] 
-  + [] 
-  + [] 
+	
 -판단 문제 없을 시 벡터 변환 후 => Move succeeded!
 -판단 문제 시 => Move failed! 출력 후 에러 반환
 
 	
-### error handling
 
-- 막대 디스크 입력 에러
-
-- 디스크 위치 변경 에러
-
-- 게임 종료 재시작 여부 입력 에러
 
 ### main function
 + [] 벡터값 할당, 이차원 벡터 크기 지정은 
