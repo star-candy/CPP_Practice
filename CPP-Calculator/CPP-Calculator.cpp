@@ -13,15 +13,15 @@ public:
 };
 
 //------------------------------------------------------------------------------
-/*
+
 Token get_token()    // read a token from cin
 {
     char ch;
     cin >> ch;    // note that >> skips whitespace (space, newline, tab, etc.)
 
     switch (ch) {
- //not yet   case ';':    // for "print"
- //not yet   case 'q':    // for "quit"
+    case ';':    // for "print"
+    case 'q':    // for "quit"
     case '(': case ')': case '+': case '-': case '*': case '/':
         return Token(ch);        // let each character represent itself
     case '.':
@@ -37,7 +37,7 @@ Token get_token()    // read a token from cin
         error("Bad token");
     }
 }
-*/
+
 //------------------------------------------------------------------------------
 
 class Token_stream {
