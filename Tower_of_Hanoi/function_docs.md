@@ -1,16 +1,17 @@
 ## 기능 목록
 ### view class
 
-- 디스크 이동 횟수에 대한 변수
 - i.o functions
-  + [] 막대, 디스크 개수 입출력
-  + [] 디스크 위치 변경 입출력 
-  + [] 게임 종료 재시작 입출력
+  + [0] 막대, 디스크 개수 입출력
+  + [0] 디스크 위치 변경 입출력 
+  + [0] 게임 종료 재시작 입출력
 
 - game visualize functions
   + [] 디스크 시각화 출력
 
-디스크 이동 횟수 getter
+- [0] stick, disk getter function
+- [0] 디스크 이동 횟수에 대한 변수
+- [0] stick, disk 반환 위한 변수
 
 ### model class
 
