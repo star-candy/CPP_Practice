@@ -124,3 +124,4 @@ Do you want to play again? (Y/S): y
 - 더 예쁜 시각화
 - 퍼즐 자동으로 푸는 기능 구현?
 - 디스크 이동에서 규약 오류 발생시 종류 알려주기
+- disk, stick, vector 등 중요 값 저장하는 class 제작?

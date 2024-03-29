@@ -19,17 +19,47 @@ public:
         }
         hanoiTower.push_back(initTower);
 
-        for (int j = 0; j < stick; j++) {
+        for (int j = 1; j < stick; j++) {
             hanoiTower.push_back(empty);
         }
     }
 
     void verification(int existPosition, int changePosition) {
-       
+        --existPosition, --changePosition;
+        int existPositionValue = 0, changePositionValue = 0;
+        
 
+        if (hanoiTower[existPosition].empty()) {
+            error("해당 위치에 디스크가 없습니다.");
+        }
+        else {
+            existPositionValue = hanoiTower[existPosition].back(); //위치 검사 이후 변수생성으로 벡터 범위 오류 방지
+        }
 
+        if (hanoiTower[changePosition].empty()) {
+            changePositionValue = disk + 1; // 변경할 스틱 내에 디스크가 없다면 큰값 넣어 디스크간 크기비교시 오류 방지
+        }
+        else {
+            changePositionValue = hanoiTower[changePosition].back();
+        }
+        
+        if (existPositionValue > changePositionValue) {
+            error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");
+        }
     }
 
+    void moveHanoiTower(int existPosition, int changePosition) {
+        --existPosition, --changePosition;
+        int valueBuffer = hanoiTower[existPosition].back();;
+        hanoiTower[existPosition].pop_back();
+        hanoiTower[changePosition].push_back(valueBuffer);
+
+        if (hanoiTower[stick - 1].size() == disk) {
+            gameEndCount = 0;
+        }
+    }
+
+    vector<vector<int>> getHanoiTower() { return hanoiTower; }
     int getGameEndCount() { return gameEndCount; }
 
 private:
@@ -46,7 +76,7 @@ public:
     void inputInitialize();
     void inputMoveDisk(Model& model);
     bool inputReset();
-    void outputDiskVisual();
+    void outputDiskVisual(Model& model);
 
     int getStick() { return stick; }
     int getDisk() { return disk; }
@@ -82,6 +112,7 @@ void View::inputMoveDisk(Model& model) {
         }
 
         model.verification(existPosition, changePosition);
+        model.moveHanoiTower(existPosition, changePosition);
 
         moveCount++;
     }
@@ -108,7 +139,17 @@ bool View::inputReset() {
         return false;
     }
 }
-void View::outputDiskVisual() {
+void View::outputDiskVisual(Model& model) {
+
+    vector<vector<int>> hanoiTower =  model.getHanoiTower();
+
+    for (int i = 0; i < stick; i++) {
+        cout << '[' << i + 1 << ']';
+        for (int disk : hanoiTower[i]) {
+            cout << disk << " ";
+        }
+        cout << "\n";
+    }
 
 }
 
@@ -127,7 +168,7 @@ try {
 
         while (model.getGameEndCount()) {//1로 초기화 / 게임 완료 시 0 return
             view.inputMoveDisk(model); //model 객체 참조
-
+            view.outputDiskVisual(model);
         }
 
 
