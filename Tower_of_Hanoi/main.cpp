@@ -1,7 +1,5 @@
 #include "std_lib_facilities.h"
 
-
-
 class Model
 {
 public:
