@@ -40,7 +40,9 @@ void Model::verification(int existPosition, int changePosition) {
     --existPosition, --changePosition;
     int existPositionValue = 0, changePositionValue = 0;
 
-
+    if (existPosition == changePosition) {
+        error("동일한 위치로 이동할 수 없습니다.");
+    }
     if (hanoiTower[existPosition].empty()) {
         error("해당 위치에 디스크가 없습니다.");
     }
@@ -99,7 +101,8 @@ void View::inputInitialize() {
     try {
         cout << "막대와 디스크의 개수를 입력해주세요" << "\n";
         cin >> stick >> disk;
-        if (stick < 3  || disk < 1 ) { //stick disk에 int가 아닌 값 입력 경우도 고려할 것
+
+        if (stick < 3 || disk < 1) { //stick disk에 int가 아닌 값 입력 경우도 고려할 것
             error("Input failed!");
         }
     }
@@ -116,6 +119,9 @@ void View::inputMoveDisk(Model& model) {
         if (existPosition > stick || changePosition > stick ) {//position에 int가 아닌 값 입력 경우도 작성 할것
             error("Input is out of stick range");
         }
+        if (existPosition < 1 || changePosition < 1) {
+            error("Input zero or negative value");
+        }
 
         model.verification(existPosition, changePosition);
         model.moveHanoiTower(existPosition, changePosition);
@@ -125,7 +131,7 @@ void View::inputMoveDisk(Model& model) {
     }
     catch (runtime_error& e) {
         cout << "=> " << "Move failed! ";
-        cout << e.what() << "\n";
+        cout << e.what() << "\n\n";
         inputMoveDisk(model);
     }
 }
@@ -180,8 +186,6 @@ try {
             view.inputMoveDisk(model); //model 객체 참조
             view.outputDiskVisual(model);
         }
-
-
         restartCount = view.inputReset();
     } while (restartCount);
 

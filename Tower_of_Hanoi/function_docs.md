@@ -32,11 +32,10 @@
   + [0] 게임 종료 카운터 반환 - getGameEndCount
 
 	
-
 ### main (controller)
 + [0] 하노이 탑 게임 시작 문구 출력
-+ [0] 게임 종료 반환 전까지 디스크 변경
-+ [0] 재시작 입력 시 처음부터, 종료 입력 시 종료
++ [0] gameEndCounter 변경 전까지 disk 변경 입출력
++ [0] restartCount변경 후 게임 재시작 여부 판단
 
 
  구현 의도 - class 활용 및 객체지향으로서의 독립성 확보(mvc)
