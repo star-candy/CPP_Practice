@@ -69,14 +69,12 @@ void Model::moveHanoiTower(int existPosition, int changePosition) {
         gameEndCount = 0;
     }
 }
-
 vector<vector<int>> Model::getHanoiTower() {
     return hanoiTower;
 }
 int Model::getGameEndCount() {
     return gameEndCount;
 }
-
 
 
 class View {
@@ -115,7 +113,7 @@ void View::inputMoveDisk(Model& model) {
         cout << "[" << moveCount << "]";
         cout << "From which tower will you move a disk to which tower ? (from = [1 | 2 | 3], to = [1 | 2 | 3]) : ";
         cin >> existPosition >> changePosition;
-        if (existPosition > stick || changePosition > stick ) {//position에 int가 아닌 값 입력 경우도 고려할 것
+        if (existPosition > stick || changePosition > stick ) {//position에 int가 아닌 값 입력 경우도 작성 할것
             error("Input is out of stick range");
         }
 
@@ -150,9 +148,7 @@ bool View::inputReset() {
     }
 }
 void View::outputDiskVisual(Model& model) {
-
-    vector<vector<int>> hanoiTower =  model.getHanoiTower();
-
+    const vector<vector<int>> &hanoiTower = model.getHanoiTower();
     for (int i = 0; i < stick; i++) {
         cout << '[' << i + 1 << ']';
         for (int disk : hanoiTower[i]) {
@@ -163,7 +159,6 @@ void View::outputDiskVisual(Model& model) {
     cout << "\n";
 
 }
-
 int View::getStick() {
     return stick;
 }
