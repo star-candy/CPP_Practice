@@ -1,7 +1,6 @@
 #include "std_lib_facilities.h"
 
-class Model
-{
+class Model {
 public:
 
     Model(int stick, int disk) {
@@ -10,57 +9,12 @@ public:
         createHanoiTower();
     }
 
-    void createHanoiTower() {
-        vector<int> initTower;
-        vector<int> empty;
+    void createHanoiTower();
+    void verification(int existPosition, int changePosition);
+    void moveHanoiTower(int existPosition, int changePosition);
 
-        for (int i = disk; i > 0; i--) {
-            initTower.push_back(i);
-        }
-        hanoiTower.push_back(initTower);
-
-        for (int j = 1; j < stick; j++) {
-            hanoiTower.push_back(empty);
-        }
-    }
-
-    void verification(int existPosition, int changePosition) {
-        --existPosition, --changePosition;
-        int existPositionValue = 0, changePositionValue = 0;
-        
-
-        if (hanoiTower[existPosition].empty()) {
-            error("해당 위치에 디스크가 없습니다.");
-        }
-        else {
-            existPositionValue = hanoiTower[existPosition].back(); //위치 검사 이후 변수생성으로 벡터 범위 오류 방지
-        }
-
-        if (hanoiTower[changePosition].empty()) {
-            changePositionValue = disk + 1; // 변경할 스틱 내에 디스크가 없다면 큰값 넣어 디스크간 크기비교시 오류 방지
-        }
-        else {
-            changePositionValue = hanoiTower[changePosition].back();
-        }
-        
-        if (existPositionValue > changePositionValue) {
-            error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");
-        }
-    }
-
-    void moveHanoiTower(int existPosition, int changePosition) {
-        --existPosition, --changePosition;
-        int valueBuffer = hanoiTower[existPosition].back();;
-        hanoiTower[existPosition].pop_back();
-        hanoiTower[changePosition].push_back(valueBuffer);
-
-        if (hanoiTower[stick - 1].size() == disk) {
-            gameEndCount = 0;
-        }
-    }
-
-    vector<vector<int>> getHanoiTower() { return hanoiTower; }
-    int getGameEndCount() { return gameEndCount; }
+    vector<vector<int>> getHanoiTower();
+    int getGameEndCount();
 
 private:
     vector<vector<int>> hanoiTower;
@@ -68,6 +22,60 @@ private:
     int disk;
     int gameEndCount = 1;
 };
+
+void Model::createHanoiTower() {
+    vector<int> initTower;
+    vector<int> empty;
+
+    for (int i = disk; i > 0; i--) {
+        initTower.push_back(i);
+    }
+    hanoiTower.push_back(initTower);
+
+    for (int j = 1; j < stick; j++) {
+        hanoiTower.push_back(empty);
+    }
+}
+void Model::verification(int existPosition, int changePosition) {
+    --existPosition, --changePosition;
+    int existPositionValue = 0, changePositionValue = 0;
+
+
+    if (hanoiTower[existPosition].empty()) {
+        error("해당 위치에 디스크가 없습니다.");
+    }
+    else {
+        existPositionValue = hanoiTower[existPosition].back(); //위치 검사 이후 변수생성으로 벡터 범위 오류 방지
+    }
+
+    if (hanoiTower[changePosition].empty()) {
+        changePositionValue = disk + 1; // 변경할 스틱 내에 디스크가 없다면 큰값 넣어 디스크간 크기비교시 오류 방지
+    }
+    else {
+        changePositionValue = hanoiTower[changePosition].back();
+    }
+
+    if (existPositionValue > changePositionValue) {
+        error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");
+    }
+}
+void Model::moveHanoiTower(int existPosition, int changePosition) {
+    --existPosition, --changePosition;
+    int valueBuffer = hanoiTower[existPosition].back();;
+    hanoiTower[existPosition].pop_back();
+    hanoiTower[changePosition].push_back(valueBuffer);
+
+    if (hanoiTower[stick - 1].size() == disk) {
+        gameEndCount = 0;
+    }
+}
+
+vector<vector<int>> Model::getHanoiTower() {
+    return hanoiTower;
+}
+int Model::getGameEndCount() {
+    return gameEndCount;
+}
 
 
 
@@ -78,8 +86,8 @@ public:
     bool inputReset();
     void outputDiskVisual(Model& model);
 
-    int getStick() { return stick; }
-    int getDisk() { return disk; }
+    int getStick();
+    int getDisk();
 
 private:
     int stick = 0;
@@ -105,7 +113,7 @@ void View::inputInitialize() {
 void View::inputMoveDisk(Model& model) {
     try {
         cout << "[" << moveCount << "]";
-        cout << "From which tower will you move a disk to which tower ? (from = [1 | 2 | 3], to = [1 | 2 | 3]) :" << "\n";
+        cout << "From which tower will you move a disk to which tower ? (from = [1 | 2 | 3], to = [1 | 2 | 3]) : ";
         cin >> existPosition >> changePosition;
         if (existPosition > stick || changePosition > stick ) {//position에 int가 아닌 값 입력 경우도 고려할 것
             error("Input is out of stick range");
@@ -113,10 +121,12 @@ void View::inputMoveDisk(Model& model) {
 
         model.verification(existPosition, changePosition);
         model.moveHanoiTower(existPosition, changePosition);
+        cout << "=> " << "Move succeeded!" << "\n\n";
 
         moveCount++;
     }
     catch (runtime_error& e) {
+        cout << "=> " << "Move failed! ";
         cout << e.what() << "\n";
         inputMoveDisk(model);
     }
@@ -150,11 +160,16 @@ void View::outputDiskVisual(Model& model) {
         }
         cout << "\n";
     }
+    cout << "\n";
 
 }
 
-
-
+int View::getStick() {
+    return stick;
+}
+int View::getDisk() {
+    return disk;
+}
 
 
 int main()
