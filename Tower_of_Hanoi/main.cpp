@@ -99,8 +99,9 @@ private:
 
 void View::inputInitialize() {
     try {
-        cout << "막대와 디스크의 개수를 입력해주세요" << "\n";
+        cout << "막대와 디스크의 개수를 입력해주세요 : ";
         cin >> stick >> disk;
+        cout << "\n";
 
         if (stick < 3 || disk < 1) { //stick disk에 int가 아닌 값 입력 경우도 고려할 것
             error("Input failed!");
@@ -181,7 +182,7 @@ try {
         View view; // View class 객체 생성
         view.inputInitialize();
         Model model(view.getStick(), view.getDisk()); //Model class 객체 생성 및 하노이 탑 초기화
-
+        view.outputDiskVisual(model); //초기 하노이 타워 출력
         while (model.getGameEndCount()) {//1로 초기화 / 게임 완료 시 0 return
             view.inputMoveDisk(model); //model 객체 참조
             view.outputDiskVisual(model);
@@ -200,3 +201,30 @@ catch (...) {
     cout << "something error" << "\n";
     keep_window_open();
 }
+
+
+/*void printHanoiTower(int stick, const std::vector<std::vector<int>>& hanoiTower) {
+    // 막대의 최대 높이 계산
+    int maxHeight = 0;
+    for (const auto& rod : hanoiTower) {
+        maxHeight = std::max(maxHeight, static_cast<int>(rod.size()));
+    }
+
+    // 디스크를 중앙 정렬하여 출력
+    for (int height = maxHeight - 1; height >= 0; --height) {
+        for (int i = 0; i < stick; ++i) {
+            if (hanoiTower[i].size() > height) {
+                // 디스크 크기에 따라 '-' 출력 (중앙 정렬)
+                int diskSize = hanoiTower[i][height];
+                int padding = (stick - diskSize) / 2;
+                std::cout << std::setw(padding + diskSize) << std::setfill('-') << std::setw(stick - padding) << ' ';
+            } else {
+                // 디스크가 없는 경우 빈칸 출력
+                std::cout << std::setw(stick) << ' ';
+            }
+        }
+        std::cout << std::endl;
+    }
+    // 각 막대 밑판 구분
+    std::cout << std::string(stick * maxHeight, '=') << std::endl;
+}*/
