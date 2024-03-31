@@ -8,21 +8,20 @@ public:
         this->disk = disk;
         createHanoiTower();
     }
-
-    void createHanoiTower();
+    
     void verification(int existPosition, int changePosition);
     void moveHanoiTower(int existPosition, int changePosition);
 
     vector<vector<int>> getHanoiTower();
-    int getGameEndCount();
+    bool getGameEndCount();
 
 private:
+    void createHanoiTower();
     vector<vector<int>> hanoiTower;
     int stick;
     int disk;
-    int gameEndCount = 1;
+    bool gameEndCount = true;
 };
-
 void Model::createHanoiTower() {
     vector<int> initTower;
     vector<int> empty;
@@ -58,7 +57,7 @@ void Model::verification(int existPosition, int changePosition) {
     }
 
     if (existPositionValue > changePositionValue) {
-        error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");
+        error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");;
     }
 }
 void Model::moveHanoiTower(int existPosition, int changePosition) {
@@ -68,16 +67,15 @@ void Model::moveHanoiTower(int existPosition, int changePosition) {
     hanoiTower[changePosition].push_back(valueBuffer);
 
     if (hanoiTower[stick - 1].size() == disk) {
-        gameEndCount = 0;
+        gameEndCount = false;
     }
 }
 vector<vector<int>> Model::getHanoiTower() {
     return hanoiTower;
 }
-int Model::getGameEndCount() {
+bool Model::getGameEndCount() {
     return gameEndCount;
 }
-
 
 class View {
 public:
@@ -96,15 +94,22 @@ private:
     int existPosition = 0;
     int changePosition = 0;
 };
-
 void View::inputInitialize() {
     try {
         cout << "막대와 디스크의 개수를 입력해주세요 : ";
+       
         cin >> stick >> disk;
         cout << "\n";
 
-        if (stick < 3 || disk < 1) { //stick disk에 int가 아닌 값 입력 경우도 고려할 것
-            error("Input failed!");
+        //stick disk에 int가 아닌 값 입력 경우도 고려할 것
+        if (stick < 2) { 
+            error("=> 2개 이상의 막대가 입력되어야 합니다.");
+        }
+        if (disk < 1) {
+            error("1보다 작은 디스크 값은 입력될 수 없습니다.");
+        }
+        if (stick < disk) {
+            error("=> 디스크의 개수가 막대보다 많을 수 없습니다.");
         }
     }
     catch (runtime_error& e) {
@@ -173,7 +178,6 @@ int View::getDisk() {
     return disk;
 }
 
-
 int main()
 try {
     bool restartCount = false;
@@ -203,28 +207,20 @@ catch (...) {
 }
 
 
-/*void printHanoiTower(int stick, const std::vector<std::vector<int>>& hanoiTower) {
-    // 막대의 최대 높이 계산
-    int maxHeight = 0;
-    for (const auto& rod : hanoiTower) {
-        maxHeight = std::max(maxHeight, static_cast<int>(rod.size()));
-    }
 
-    // 디스크를 중앙 정렬하여 출력
-    for (int height = maxHeight - 1; height >= 0; --height) {
-        for (int i = 0; i < stick; ++i) {
-            if (hanoiTower[i].size() > height) {
-                // 디스크 크기에 따라 '-' 출력 (중앙 정렬)
-                int diskSize = hanoiTower[i][height];
-                int padding = (stick - diskSize) / 2;
-                std::cout << std::setw(padding + diskSize) << std::setfill('-') << std::setw(stick - padding) << ' ';
-            } else {
-                // 디스크가 없는 경우 빈칸 출력
-                std::cout << std::setw(stick) << ' ';
-            }
-        }
-        std::cout << std::endl;
-    }
-    // 각 막대 밑판 구분
-    std::cout << std::string(stick * maxHeight, '=') << std::endl;
-}*/
+
+
+//void printHanoiTower(const std::vector<std::vector<int>>& hanoiTower) {
+//    for (int i = 0; i < 3; ++i) {
+//        for (int j = 0; j < 3; ++j) {
+//            if (hanoiTower[j].size() > i) {
+//                std::cout << "# ";
+//            }
+//            else {
+//                std::cout << "| ";
+//            }
+//        }
+//        std::cout << std::endl;
+//    }
+//    std::cout << std::endl;
+//}
