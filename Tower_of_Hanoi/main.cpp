@@ -39,9 +39,6 @@ void Model::verification(int existPosition, int changePosition) {
     --existPosition, --changePosition;
     int existPositionValue = 0, changePositionValue = 0;
 
-    if (existPosition == changePosition) {
-        error("동일한 위치로 이동할 수 없습니다.");
-    }
     if (hanoiTower[existPosition].empty()) {
         error("해당 위치에 디스크가 없습니다.");
     }
@@ -128,6 +125,9 @@ void View::inputMoveDisk(Model& model) {
         if (existPosition < 1 || changePosition < 1) {
             error("Input zero or negative value");
         }
+        if (existPosition == changePosition) {
+            error("동일한 위치로 이동할 수 없습니다.");
+        }
 
         model.verification(existPosition, changePosition);
         model.moveHanoiTower(existPosition, changePosition);
@@ -169,7 +169,6 @@ void View::outputDiskVisual(Model& model) {
         cout << "\n";
     }
     cout << "\n";
-
 }
 int View::getStick() {
     return stick;
