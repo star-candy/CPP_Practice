@@ -13,15 +13,15 @@ public:
 };
 
 //------------------------------------------------------------------------------
-/*
+
 Token get_token()    // read a token from cin
 {
     char ch;
     cin >> ch;    // note that >> skips whitespace (space, newline, tab, etc.)
 
     switch (ch) {
- //not yet   case ';':    // for "print"
- //not yet   case 'q':    // for "quit"
+       case ';':    // for "print"
+       case 'q':    // for "quit"
     case '(': case ')': case '+': case '-': case '*': case '/':
         return Token(ch);        // let each character represent itself
     case '.':
@@ -37,7 +37,7 @@ Token get_token()    // read a token from cin
         error("Bad token");
     }
 }
-*/
+
 //------------------------------------------------------------------------------
 
 class Token_stream {
@@ -110,13 +110,21 @@ double primary();     // read and evaluate a Primary
 int main()
 try {
     double val = 0;
-    while (cin) {
-        Token t = ts.get();
+    while (cin) {//cin은 입력이 아님, 타 type 입력 아닌 이상 무한반복
+        Token t = ts.get(); //최초 input 입력 시점
 
         while (t.kind == ';') t = ts.get();
         if (t.kind == 'q') break;
         ts.putback(t);
         cout << "= " << expression() << "\n";
+
+        /*if (t.kind == 'q') break;
+        if (t.kind == ';')
+            cout << val << '\n';
+        else
+            ts.putback(t);
+
+        val = expression();*/
 
     }
     keep_window_open("~0");
@@ -186,7 +194,7 @@ double term()
 
 double primary()     // read and evaluate a Primary
 {
-    Token t = ts.get();
+    Token t = ts.get(); //두번째 이후부터 값 input 시점
     switch (t.kind) {
     case '(':    // handle '(' expression ')'
     {
