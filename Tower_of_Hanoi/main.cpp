@@ -161,14 +161,24 @@ bool View::inputReset() {
 }
 void View::outputDiskVisual(Model& model) {
     const vector<vector<int>> &hanoiTower = model.getHanoiTower();
-    for (int i = 0; i < stick; i++) {
-        cout << '[' << i + 1 << ']';
-        for (int disk : hanoiTower[i]) {
-            cout << disk << " ";
+    vector<String> visualizeValue;
+    for (int j = 0; j < stick; j++) { //막대 개수만큼 시각화 반복
+
+        for (int k = 0; k < disk; k++) {
+            vector<String> visualizeValue.push_back() = hanoiTower[j].size();
+        }
+
+        vector<String> visualizeValue;
+
+        for (int i = 0; i < disk * 2; i++) { // 디스크 개수 * 2만큼 출력
+
+            // 특정 막대에 디스크 개수. 크기 확인
+            // 디스크 개수만큼 변수 할당, 크기를 x라고 정의할때 x*2만큼 * 저장
+            // 전체 디스크 개수만큼의 변수 중 벡터.empty가 true일 경우 공백 * 2 길이 저장
+
         }
         cout << "\n";
     }
-    cout << "\n";
 }
 int View::getStick() {
     return stick;
@@ -209,17 +219,3 @@ catch (...) {
 
 
 
-//void printHanoiTower(const std::vector<std::vector<int>>& hanoiTower) {
-//    for (int i = 0; i < 3; ++i) {
-//        for (int j = 0; j < 3; ++j) {
-//            if (hanoiTower[j].size() > i) {
-//                std::cout << "# ";
-//            }
-//            else {
-//                std::cout << "| ";
-//            }
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-//}
