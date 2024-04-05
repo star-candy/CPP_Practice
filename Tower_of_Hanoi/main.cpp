@@ -236,22 +236,3 @@ catch (...) {
     cout << "something error" << "\n";
     keep_window_open();
 }
-
-
-
-
-
-//void printHanoiTower(const std::vector<std::vector<int>>& hanoiTower) {
-//    for (int i = 0; i < 3; ++i) {
-//        for (int j = 0; j < 3; ++j) {
-//            if (hanoiTower[j].size() > i) {
-//                std::cout << "# ";
-//            }
-//            else {
-//                std::cout << "| ";
-//            }
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-//}
