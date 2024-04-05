@@ -54,7 +54,7 @@ void Model::verification(int existPosition, int changePosition) {
     }
 
     if (existPositionValue > changePositionValue) {
-        error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");;
+        error("큰 디스크를 작은 디스크 위에 올릴 수 없습니다.");
     }
 }
 void Model::moveHanoiTower(int existPosition, int changePosition) {
@@ -98,15 +98,23 @@ void View::inputInitialize() {
         cin >> stick >> disk;
         cout << "\n";
 
-        //stick disk에 int가 아닌 값 입력 경우도 고려할 것
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 입력 버퍼 제거
+            error("=> 정수형의 값이 입력되어야 합니다.");
+        }
+     
         if (stick < 2) { 
             error("=> 2개 이상의 막대가 입력되어야 합니다.");
         }
         if (disk < 1) {
-            error("1보다 작은 디스크 값은 입력될 수 없습니다.");
+            error("=> 1보다 작은 디스크 값은 입력될 수 없습니다.");
         }
         if (stick < disk) {
             error("=> 디스크의 개수가 막대보다 많을 수 없습니다.");
+        }
+        if (stick == 2 && disk == 2) {
+            error("=> 2*2 게임은 종료될 수 없습니다.");
         }
     }
     catch (runtime_error& e) {
@@ -119,11 +127,18 @@ void View::inputMoveDisk(Model& model) {
         cout << "[" << moveCount << "]";
         cout << "From which tower will you move a disk to which tower ? (from = [1 | 2 | 3], to = [1 | 2 | 3]) : ";
         cin >> existPosition >> changePosition;
-        if (existPosition > stick || changePosition > stick ) {//position에 int가 아닌 값 입력 경우도 작성 할것
-            error("Input is out of stick range");
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n'); // 입력 버퍼 제거
+            error("정수형의 값이 입력되어야 합니다.");
+        }
+
+        if (existPosition > stick || changePosition > stick ) {
+            error("막대 개수보다 큰 값은 입력될 수 없습니다.");
         }
         if (existPosition < 1 || changePosition < 1) {
-            error("Input zero or negative value");
+            error("0이하의 위치로 이동할 수 없습니다");
         }
         if (existPosition == changePosition) {
             error("동일한 위치로 이동할 수 없습니다.");
@@ -160,7 +175,7 @@ bool View::inputReset() {
     }
 }
 void View::outputDiskVisual(Model& model) {
-    const vector<vector<int>> &hanoiTower = model.getHanoiTower();
+    const vector<vector<int>>& hanoiTower = model.getHanoiTower();
     for (int i = 0; i < stick; i++) {
         cout << '[' << i + 1 << ']';
         for (int disk : hanoiTower[i]) {
@@ -206,20 +221,3 @@ catch (...) {
 }
 
 
-
-
-
-//void printHanoiTower(const std::vector<std::vector<int>>& hanoiTower) {
-//    for (int i = 0; i < 3; ++i) {
-//        for (int j = 0; j < 3; ++j) {
-//            if (hanoiTower[j].size() > i) {
-//                std::cout << "# ";
-//            }
-//            else {
-//                std::cout << "| ";
-//            }
-//        }
-//        std::cout << std::endl;
-//    }
-//    std::cout << std::endl;
-//}
