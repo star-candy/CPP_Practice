@@ -178,13 +178,30 @@ void View::outputDiskVisual(Model& model) {
     const vector<vector<int>>& hanoiTower = model.getHanoiTower();
     for (int i = 0; i < stick; i++) {
         cout << '[' << i + 1 << ']';
+
+        if (hanoiTower[i].empty()) {
+            cout << "-------------" << "\n";
+            continue;
+        }
+        for (int disk : hanoiTower[i]) {
+            while (disk > 0) {
+                cout << "|";
+                disk--;
+            }
+            cout << "-";
+        }
+        cout << "\n";
+    }
+    //기본 출력 기능
+    /*for (int i = 0; i < stick; i++) { 
+        cout << '[' << i + 1 << ']';
         for (int disk : hanoiTower[i]) {
             cout << disk << " ";
         }
         cout << "\n";
-    }
-    cout << "\n";
+    }*/
 }
+
 int View::getStick() {
     return stick;
 }
@@ -221,3 +238,20 @@ catch (...) {
 }
 
 
+
+
+
+//void printHanoiTower(const std::vector<std::vector<int>>& hanoiTower) {
+//    for (int i = 0; i < 3; ++i) {
+//        for (int j = 0; j < 3; ++j) {
+//            if (hanoiTower[j].size() > i) {
+//                std::cout << "# ";
+//            }
+//            else {
+//                std::cout << "| ";
+//            }
+//        }
+//        std::cout << std::endl;
+//    }
+//    std::cout << std::endl;
+//}
