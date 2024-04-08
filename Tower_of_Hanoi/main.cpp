@@ -158,7 +158,7 @@ void View::inputMoveDisk(Model& model) {
 }
 bool View::inputReset() {
     char restartCount;
-    cout << "Congratulation! You solved it in " << moveCount << "moves!" << "\n";
+    cout << "Congratulation! You solved it in " << moveCount - 1 << "moves!" << "\n";
     cout << "Do you want to play again? (Y/S):";
     cin >> restartCount;
 
