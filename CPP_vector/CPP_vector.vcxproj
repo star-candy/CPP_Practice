@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="change_szie_type_vector.cpp" />
     <ClCompile Include="copy_move_vector.cpp" />
     <ClCompile Include="normal_vector.cpp" />
   </ItemGroup>
