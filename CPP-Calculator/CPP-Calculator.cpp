@@ -114,9 +114,11 @@ try {
         Token t = ts.get(); //최초 input 입력 시점
 
         while (t.kind == ';') t = ts.get();
-        if (t.kind == 'q') break;
+        if (t.kind == 'q') {
+            break;
+        }
         ts.putback(t);
-        cout << "= " << expression() << "\n";
+        cout << "= " << expression() << '\n';
 
         /*if (t.kind == 'q') break;
         if (t.kind == ';')
@@ -125,6 +127,8 @@ try {
             ts.putback(t);
 
         val = expression();*/
+
+        
 
     }
     keep_window_open("~0");

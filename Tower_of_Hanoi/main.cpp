@@ -3,11 +3,7 @@
 class Model {
 public:
 
-    Model(int stick, int disk) {
-        this->stick = stick;
-        this->disk = disk;
-        createHanoiTower();
-    }
+    Model(int stick, int disk);
     
     void verification(int existPosition, int changePosition);
     void moveHanoiTower(int existPosition, int changePosition);
@@ -22,6 +18,15 @@ private:
     int disk;
     bool gameEndCount = true;
 };
+
+Model::Model(int stick, int disk) : stick{ stick }, disk{ disk } {
+
+    createHanoiTower();
+
+};
+
+
+
 void Model::createHanoiTower() {
     vector<int> initTower;
     vector<int> empty;
@@ -34,7 +39,7 @@ void Model::createHanoiTower() {
     for (int j = 1; j < stick; j++) {
         hanoiTower.push_back(empty);
     }
-}
+};
 void Model::verification(int existPosition, int changePosition) {
     --existPosition, --changePosition;
     int existPositionValue = 0, changePositionValue = 0;

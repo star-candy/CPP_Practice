@@ -15,10 +15,10 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="overide.cpp">
+    <ClCompile Include="normal_vector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="override2.cpp">
+    <ClCompile Include="copy_move_vector.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
