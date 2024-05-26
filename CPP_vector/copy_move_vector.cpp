@@ -14,12 +14,16 @@ public:
     vector& operator=(const vector& a); //이미 생성된 두 벡터 대입시 copy-assignment 문제 해결 오버로딩
     //vector 참조 타입 리턴으로 연속 대입에도 사용 가능 v1 = v2 = v3
     
-
-    ~vector() { delete[] elem; } 
+    //copy는 동적할당 및 대입으로 자원 소모 높아, 소유권만 이전하면 되는 경우 && 키워드는 move 상황에서 호출됨 
+    vector(vector&&);//move-initialize
+    vector& operator = (vector&&);//move - assignment
+    //기존 동적 할당 공간 그대로 사용
 
     double get(int n) const { return elem[n]; } 
     void set(int n, double v) { elem[n] = v; } 
     int size() const { return sz; } 
+
+    ~vector() { delete[] elem; }
 };
 
 vector::vector(int s) :sz(s), elem(new double[s]) {
@@ -32,7 +36,6 @@ vector::vector(const vector& a) :sz{ a.sz }, elem{ new double[a.sz] } // elem을 
 {
     for (int i = 0; i < sz; i++) elem[i] = a.elem[i]; //대입되는 벡터 element로 기존 벡터 값 대입
 }
-
 vector& vector::operator=(const vector& a) { //copy - assignment의 이중 delete, 대입 대상 누수 문제 해결
     double* p = new double[a.sz]; //v1 = v2에서 v2 만큼의 크기 할당
     for (int i = 0; i < a.sz; i++) p[i] = a.elem[i]; //v2내에 있는 인자 p배열로 이동
@@ -43,6 +46,19 @@ vector& vector::operator=(const vector& a) { //copy - assignment의 이중 delete, 
     return *this; //자기 자신 대한 간접 연산, return 시 참조 타입으로 사용 가능 v1 참조 반환
 }
 
+vector::vector(vector&& a) :sz{ a.sz }, elem{ a.elem } {//move - initialize 문제 해결 위한 생성자
+    a.sz = 0;
+    a.elem = nullptr;//a의 소유권 제거, a의 elem ptr 이전 후 소유권 삭제
+}
+vector& vector::operator=(vector&& a) {//move - assignment 해결, v1 = v2 = v3 가능 위한 참조 반환 타입 사용
+    //v1 = v2에서 기존 v1 공간 제거, v2 할당 후 v2 소유권 제거 필요
+    delete[] elem; // v1 = v2에서 v1 공간 제거
+    elem = a.elem; // v1에 v2 주소 대입
+    sz = a.sz; //v1에 v2 크기 대입
+    a.elem = nullptr;//v2 배열의 소유권 제거
+    a.sz = 0;
+    return *this; //참조 타입 반환
+}
 
 
 int main() {
