@@ -19,6 +19,12 @@ public:
     vector& operator = (vector&&);//move - assignment
     //기존 동적 할당 공간 그대로 사용
 
+    //double* operator[ ](int n) { return &elem[n]; }//읽고 쓰기를 []연산자를 통해 가능하게
+    //but 사용 시 *v[1] = 3 처럼 역 참조로 사용해야 함, 사용시 포인터를 반환함
+    double& operator[ ](int n) { return elem[n]; }
+    //ref 타입 반환 시 역참조 없이 벡터 사용 가능
+
+
     double get(int n) const { return elem[n]; } 
     void set(int n, double v) { elem[n] = v; } 
     int size() const { return sz; } 
