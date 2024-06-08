@@ -13,6 +13,7 @@ public:
 		num_copy_constructions++;
 	}
 
+
 	vector& operator=(const vector& v) {
 		if (this == &v) {
 			return *this;
