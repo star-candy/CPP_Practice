@@ -63,19 +63,13 @@
 //
 //struct Circle : Shape
 //{
-//	Circle() : radius{ 0 } {}
-//	Circle(double r) : radius{ r } {}
-//	double getRadius() const { return radius; }
-//	void setRadius(double r) { radius = r; }
 //
-//private:
-//	double radius;
+// 
 //};
 //
 //ostream& operator<<(ostream& os, const Circle& c)
 //{
-//	os << "(x: " << c.getX() << ", y: " << c.getY() << ", color: " << c.getColor() << ", radius: " << c.getRadius() << ")";
-//	return os;
+
 //}
 //
 //int main() {

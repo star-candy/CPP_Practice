@@ -34,8 +34,7 @@
 //};
 //
 //ostream& operator <<(ostream& os, const Shape& s) {
-//	os << "(" << s.getX() << ", " << s.getY() << ", " << s.getColor() << ")";
-//	return os;
+//
 //}
 //
 //int main() {

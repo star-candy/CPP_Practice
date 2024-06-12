@@ -19,17 +19,12 @@
 //
 //struct Shape
 //{
-//	Shape() : x{0}, y{0}, color{Color::white} {}
-//	double getX() { return x; }
-//	double getY() { return y; }
-//	Color getColor(){ return color; }
-//	void setPos(double xx, double yy) { x = xx; y = yy; }
-//	void setColor(Color c) { color = c; }
+//	
 //
-//private:
-//	double x;
-//	double y;
-//	Color color;
+//
+//
+//
+//
 //};
 //
 //int main() {

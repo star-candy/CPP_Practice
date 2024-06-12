@@ -29,7 +29,7 @@
 //	void setPos(double xx, double yy) { x = xx; y = yy; }
 //	void setColor(Color c) { color = c; }
 //
-//	virtual double calcArea() { return 0; }
+
 //
 //private:
 //	double x, y;
@@ -52,9 +52,7 @@
 //	double getHeight() const { return height; }
 //
 //	void setSize(double w, double h) { width = w; height = h; }
-//	double calcArea() {
-//		return height * width;
-//	}
+//	
 //
 //private:
 //	double width, height;
@@ -75,8 +73,7 @@
 //	double getRadius() const { return radius; }
 //	void setRadius(double r) { radius = r; }
 //
-//	double calcArea() { return radius * radius * M_PI; }
-//
+
 //private:
 //	double radius;
 //};

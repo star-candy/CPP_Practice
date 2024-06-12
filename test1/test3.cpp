@@ -42,21 +42,12 @@
 //
 //struct Rect : Shape
 //{
-//	Rect() : width{ 0 }, height{ 0 } {}
-//	Rect(double w, double h) : width{ w }, height{ h } {}
-//
-//	double getWidth() const { return width; }
-//	double getHeight() const { return height; }
-//	void setSize(double w, double h) { width = w; height = h; }
-//private:
-//	double width, height;
+//	
 //};
 //
 //ostream& operator<<(ostream& os, const Rect& r)
 //{
-//	os << "(x: " << r.getX() << ", y: " << r.getY() << ", color: " << r.getColor() << ", width: " << r.getWidth() << ", height: " << r.getHeight() << ")";
 //
-//	return os;
 //}
 //
 //int main() {
